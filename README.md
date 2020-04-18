@@ -1,0 +1,2 @@
+# COVID-19-Self-Diagnosis-Web
+This project is for diagnosing contagious disease from symptoms written in natural language. Symptoms will be compared with data, which is already classified by disease, and used to show the probability of infection to the user. The goal of this project is to reduce time to decide to visit the hospital when the user suspects oneself on a contagious infection and helps patients to describe their symptoms in a familiar way.
