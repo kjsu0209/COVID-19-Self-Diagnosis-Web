@@ -1,0 +1,45 @@
+.content{
+    display: flex;
+}
+
+/* Left Side : Dashboard */
+.left_side{
+    flex: 1;
+    background-color: black;
+    color: white;
+    height: 100vh;
+}
+.menu_dropdown{
+    height: 7%;
+    font-size: 2rem;
+}
+
+.map{
+    height: 50%;
+}
+#map {
+    height: 100%;
+  }
+
+.statistic{
+}
+
+/* Right Side : Diagnosis */
+.right_side{
+    flex: 2;
+    margin: 1rem;
+    overflow-y: scroll;
+}
+
+#step2{
+    display:none;
+}
+
+
+#step3{
+    display:none;
+}
+
+#result{
+    display:none;
+}
