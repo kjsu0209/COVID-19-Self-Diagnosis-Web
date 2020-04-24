@@ -8,14 +8,14 @@ import json
 class TestGetRAD(unittest.TestCase):
 
     def test_word_classifier(self):
-        keyword = 'vomited'
+        keyword = 'I coughed a lot and vomited. I also have a headache.'
         words = word_tokenize(keyword)
         # returns tag name of part of speech
         tag_block = nltk.pos_tag(words)
         print(tag_block)
         # returns stemmed word
-        t = test.word_classify(tag_block[0][1], tag_block[0][0])
-        self.assertEqual(t, 'vomit')
+        t = test.word_classify(tag_block[1][1], tag_block[1][0])
+        self.assertEqual(t, 'cough')
 
     def test_return_value(self):
         # returns 0 if argument is not symptom word
@@ -71,7 +71,7 @@ class TestSteps(unittest.TestCase):
 
         for s in rad_value.keys():
             # assert the RAD value of each symptom exists
-            print(s, ': ', rad_value[s])
+            # print(s, ': ', rad_value[s])
             self.assertTrue(rad_value[s] > 0)
 
 

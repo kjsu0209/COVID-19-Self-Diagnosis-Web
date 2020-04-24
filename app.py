@@ -15,8 +15,8 @@ def main():
     total_deaths = 0
 
     county = {}
-    #url = "https://www.gov.ie/en/publication/a68c4f-an-analysis-of-the-cases-of-covid-19-in-ireland-as-of-thursday-2-apr/"
-    url = "https://www.gov.ie/en/press-release/17f5cb-statement-from-the-national-public-health-emergency-team-tuesday-14-/"
+    # url = "https://www.gov.ie/en/press-release/17f5cb-statement-from-the-national-public-health-emergency-team-tuesday-14-/"
+    url = "https://www.gov.ie/en/press-release/f4ad12-statement-from-the-national-public-health-emergency-team-thursday-23/"
     res = requests.get(url)
 
     soup = BeautifulSoup(res.content, "html.parser")
@@ -38,7 +38,6 @@ def main():
                 if td[0].text not in county.keys():
                     county[td[0].text] = td[1].text
     c = json.dumps(county)
-
     return render_template('main.html', total_cases=total_cases, total_deaths=total_deaths, county=c)
 
 from nltk.tokenize import word_tokenize, sent_tokenize
@@ -78,20 +77,20 @@ def step1():
             if tag == 'JJ' or tag == 'JJR' or tag == 'RB':
                 continue
 
-            if tag == 'NN' or tag == 'VBN':  # tag is entity
+            if tag == 'NN':  # tag is entity
                 for s in symptom.keys():
                     if word == s:
                         symptoms.append(s)
-            elif tag == 'VBG':
+            elif tag == 'VBG' or tag == 'VBP' or tag == 'VBN' or tag == 'VBD':
                 keyword = porter.stem(word)
                 for s in symptom.keys():  # Check symptom could be happen in COVID-19
                     if keyword == s:
-                        symptoms.append(word)
+                        symptoms.append(s)
             elif tag == 'NNS':
                 keyword = lemmatizer.lemmatize(word)
                 for s in symptom.keys():  # Check symptom could be happen in COVID-19
                     if keyword == s:
-                        symptoms.append(word)
+                        symptoms.append(s)
             elif word in word_vectors.vocab.keys():  # find symptom word based on similarity
                 s_symptom = word_vectors.similarity(w1=word, w2='symptom')
                 s_difficulty = word_vectors.similarity(w1=word, w2='difficulty')
@@ -133,4 +132,4 @@ def step3():
 
 
 if __name__ == '__main__':
-    main()
+    app.run()

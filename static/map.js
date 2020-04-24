@@ -15,7 +15,7 @@ function step1(){
           var s_list = data['symptoms'].toString().split(',');
           var html_str = "";
           for(var i in s_list){
-              html_str = html_str + "<div class='btn btn-success btn-symptom'>" + s_list[i] + "</div>"
+              html_str = html_str + "<div class='btn btn-success btn-symptom' style='margin-left=1rem;'>" + s_list[i] + "</div>"
           }
           list.innerHTML = html_str;
 
@@ -125,27 +125,28 @@ function step3(){
 
           // Get result B - period of symptom
           var earier_start = new Date();
-          var later_end = new Date();
+          var later_end = new Date('1999-01-01');
           let datebox = document.getElementsByName('daterange')
-            var date;
+            var date, date_string, date_arry, start, end, start_date, end_date;
           for(var a=0;a < datebox.length;a++){
               date = datebox[a];
-              var date_string = date.value
-              var date_arry = date_string.split(' - ');
-              var start = date_arry[0].replace('/', '-');
-              var end = date_arry[1].replace('/', '-');
-             var start_date = new Date(start);
-             var end_date = new Date(end);
+              date_string = date.value
+              date_arry = date_string.split(' - ');
+              start = date_arry[0].replace('/', '-');
+              end = date_arry[1].replace('/', '-');
+             start_date = new Date(start);
+             end_date = new Date(end);
              if(start_date < earier_start) earier_start = start_date;
-             if(end_date < later_end) later_end = end_date;
+             if(end_date > later_end) later_end = end_date;
           }
+
             var today = new Date();
-                        console.log(later_end - earier_start)
-          if(later_end >= today){
-              if(later_end - earier_start >= 14){
+          console.log(earier_start + ' : ' + later_end)
+          if(later_end.getDate() >= today.getDate()){
+              if((later_end.getTime() - earier_start.getTime())/(1000*60*60*24) >= 14){
                   alert_num[1] = 2;
               }
-              else if (later_end - earier_start <= 7){
+              else if ((later_end.getTime() - earier_start.getTime())/(1000*60*60*24) <= 7){
                   alert_num[1] = 1;
               }
               else{
@@ -153,17 +154,25 @@ function step3(){
               }
           }
           else{
-                if (today - earier_start <= 7){
+                if ((today.getTime() - earier_start.getTime())/(1000*60*60*24) <= 7){
                     alert_num[1] = 1;
                 }
-                else if(later_end - earier_start < 5){
+                else if((later_end.getTime() - earier_start.getTime())/(1000*60*60*24) < 5){
                     alert_num[1] = 1;
                 }
                 else {
                     alert_num[1] = 0;
                 }
           }
+         var result_comment = ''
 
+          if(alert_num[1] == 0){
+              result_comment = 'WHO defines the incubation period of COVID-19 is range from 1-14 days with symptoms. Please keep watching your symptoms.';
+          }
+          else{
+              result_comment = 'WHO defines the incubation period of COVID-19 is range from 1-14 days with symptoms. Your symptoms might appear in this period. Please check other results and keep self-isolation.'
+          }
+          document.getElementById('RAD_result1').innerText = result_comment;
 
           // Get result C - questions
           let checkbox = []
@@ -177,6 +186,18 @@ function step3(){
               }
           }
           alert_num[2] = checknum;
+
+          result_comment = ''
+
+          if(checknum == 0 || (checkbox[0] == 1 && checknum == 1)){
+              result_comment = 'It seems no contact related to COVID-19. Make sure to keep social distancing.';
+          }
+          else{
+              result_comment = 'It seems high possibility to contact with patient. Recommend self-isolation if you got 2 red lights or 2 yellow lights.';
+          }
+
+          document.getElementById('RAD_result2').innerText = result_comment;
+
 
             //Set result images
           var images = []

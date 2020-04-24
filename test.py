@@ -23,14 +23,12 @@ from nltk.corpus import brown
 def word_classify(word, value):  # Categorizing Words
     lemmatizer = WordNetLemmatizer()
     porter = PorterStemmer()
-    lancaster = LancasterStemmer()
     keyword = value
 
-    if word == 'VBG':
+    if word == 'VBG' or word == 'VBN' or word == 'VBD':
         keyword = porter.stem(value)
     elif word == 'NNS':
         keyword = lemmatizer.lemmatize(value)
-
     return keyword
 
 
