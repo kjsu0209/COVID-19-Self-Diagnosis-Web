@@ -3,11 +3,11 @@ This project is for diagnosing contagious disease from symptoms written in natur
 # Screenshots   
 ### Step 1: Get description of symptom   
 When the user clicked the submit button, client sends GET request to web server and Step 2 appears. Responded data contains symptom words extracted from description in Step 1.   
-![https://user-images.githubusercontent.com/35682236/90317645-e4b54f80-df65-11ea-9ed0-3498f6373263.png]
+![screenshot1](https://user-images.githubusercontent.com/35682236/90317645-e4b54f80-df65-11ea-9ed0-3498f6373263.png)
 ### Step 2: Get period of symptom   
 User can set the range of periods that symptom appeared. Each date form is applied per symptom.      
-![https://user-images.githubusercontent.com/35682236/90317648-e848d680-df65-11ea-89e0-9cf11f03fc4b.png]         
+![screenshot2](https://user-images.githubusercontent.com/35682236/90317648-e848d680-df65-11ea-89e0-9cf11f03fc4b.png)         
 ### Step 3: Questionnaire about exposure to the virus        
-![https://user-images.githubusercontent.com/35682236/90317652-ec74f400-df65-11ea-9773-f44c2efa9bb4.png]        
+![screenshot3](https://user-images.githubusercontent.com/35682236/90317652-ec74f400-df65-11ea-9773-f44c2efa9bb4.png)            
 ### Step 4: Result        
-![https://user-images.githubusercontent.com/35682236/90317653-ee3eb780-df65-11ea-9c66-e5f2e3804408.png]           
+![screenshot4](https://user-images.githubusercontent.com/35682236/90317653-ee3eb780-df65-11ea-9c66-e5f2e3804408.png)           
