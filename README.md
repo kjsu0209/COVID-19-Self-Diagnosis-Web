@@ -1,5 +1,15 @@
 # COVID-19-Self-Diagnosis-Web
 This project is for diagnosing contagious disease from symptoms written in natural language. Symptoms will be compared with data, which is already classified by disease, and used to show the probability of infection to the user. The goal of this project is to reduce time to decide to visit the hospital when the user suspects oneself on a contagious infection and helps patients to describe their symptoms in a familiar way.   
+
+# Components   
+- /static : configuration, javascript(maps.js), css file(style.css)    
+- /templates : html file
+- app.py : flask server
+- test.py : symptom word extraction tool (show RAD values of symptoms in CSV)
+- testing.py : unit test
+- word.py : generate symptom word model (words from related articles), executed in Jupytor notebook 
+
+
 # Screenshots   
 ### Step 1: Get description of symptom   
 When the user clicked the submit button, client sends GET request to web server and Step 2 appears. Responded data contains symptom words extracted from description in Step 1.   
